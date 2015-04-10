@@ -1,22 +1,19 @@
 import feedparser
 
-python_wiki_rss_url = "http://www.tvrage.com/myweekrss.php"
+tv_shows_url = "http://www.tvrage.com/myrss.php"
+feeds = feedparser.parse(tv_shows_url)
 
-feeds = feedparser.parse(python_wiki_rss_url)
-attrs = []
-for i in feeds:
-	attrs.append(i)
-print(attrs)
-print(len(feeds.entries))
-print(feeds.entries[792])
+tvshows = ["Arrow", "Flash", "Blacklist", "Nine-Nine"]
 
 num = 0
+title_list = []
 while num < len(feeds.entries):
-	print(feeds.entries[num].title)
+	title_list.append((feeds.entries[num].title).split())
 	num += 1
-	#if i == "entries":
-	#	print(getattr(feeds, i)[15].title)
-	#if i != "entries":
-	#	print(feeds[i])
 
-
+titleno = 0
+while titleno < len(feeds.entries):
+	for show in tvshows:
+		if show in title_list[titleno]:
+			print(show + " is on tonight!")
+	titleno += 1
