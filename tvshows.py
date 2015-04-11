@@ -1,5 +1,4 @@
 import feedparser
-import bisect
 
 tv_shows_url = "http://www.tvrage.com/myweekrss.php"
 feeds = feedparser.parse(tv_shows_url)
@@ -30,16 +29,15 @@ while number < len(feeds.entries):
 		key_list.append(number)
 	number += 1
 
-#function below copied from bisect documentation
-def find_le(a, x):
-    #'Find rightmost value less than or equal to x'
-    i = bisect.bisect_right(a, x)
-    if i:
-        return a[i-1]
-    raise ValueError
+#function that finds the largest number in an ordered list l that is less than x (kind of like a ceiliing function)
+def lessthan(l, x):
+	for i in l:
+		if i > x:
+			return l[(l.index(i)) - 1]
 
+#prints which shows are on this week and their dates/times
 for code in show_codes:
-	print(feeds.entries[find_le(key_list, code)].title)
+	print(feeds.entries[lessthan(key_list, code)].title)
 	print(feeds.entries[code].title)
 
 #print(feeds.entries[411].title)
