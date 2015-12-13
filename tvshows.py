@@ -3,7 +3,7 @@ import feedparser
 tv_shows_url = "http://www.tvrage.com/myweekrss.php"
 feeds = feedparser.parse(tv_shows_url)
 
-tvshows = ["Arrow", "Flash", "Blacklist", "Nine-Nine", "Suits"]
+tvshows = ["Arrow", "Flash", "Blacklist", "Nine-Nine", "Suits", "Undateable", "Saul"]
 
 #allows me to make keyword database for my shows
 num = 0
